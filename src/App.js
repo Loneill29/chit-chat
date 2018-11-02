@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
 import * as firebase from 'firebase';
-import RoomList from './components/RoomList';
-import MessageList from './components/MessageList';
+import  RoomList  from './components/RoomList.js';
+import MessageList from './components/MessageList.js';
+import User from './components/User.js';
 
 var config = {
     apiKey: "AIzaSyBRPeLHabN6YKcnuGD9N5RHgWrGg1zGCE0",
@@ -20,7 +21,13 @@ class App extends Component {
     super(props);
     this.state = {
       currentRoom: {},
+      currentRoomId: 0,
+      username: 0
     };
+  }
+
+  createUser(username) {
+    this.setState({username: username});
   }
 
   openRoom(room) {
@@ -30,8 +37,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <RoomList firebase= {firebase} currentRoom={this.state.currentRoom} openRoom={(room) => {this.openRoom(room)} }/>
-        <MessageList firebase= {firebase} currentRoom={this.state.currentRoom}  />
+        <User firebase={firebase} createUser={this.createUser.bind(this)} username={this.state.username} />
+        <RoomList firebase= {firebase} currentRoom={this.state.currentRoomId} openRoom={(room) => {this.openRoom(room)} } username={this.state.username} />
+        <MessageList firebase= {firebase} currentRoom={this.state.currentRoomId} username={this.state.username} />
       </div>
     );
   }
