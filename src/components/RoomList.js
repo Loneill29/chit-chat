@@ -6,9 +6,10 @@ class RoomList extends Component {
     super(props);
 
     this.state = {
-    rooms: [],
-    newRoom: ''
+      rooms: [],
+      newRoom: ''
     };
+
     this.roomsRef = this.props.firebase.database().ref('rooms');
   }
 
@@ -17,6 +18,10 @@ class RoomList extends Component {
       const room = snapshot.val();
       room.key = snapshot.key;
       this.setState({ rooms: this.state.rooms.concat( room ) })
+    });
+
+    this.roomsRef.on('child_removed', snapshot  => {
+      this.setState({ rooms: this.state.rooms.filter( room => room.key !== snapshot.key )  })
     });
   }
 
@@ -28,28 +33,35 @@ class RoomList extends Component {
     this.setState({ newRoom: '' });
   }
 
+  deleteRoom(room) {
+    this.roomsRef.child(room.key).remove();
+  }
+
   handleChange(event) {
     this.setState({newRoom: event.target.value });
   }
 
   render () {
     return (
-      <section className="sidebar">
-        <h1>Bloc Chat</h1>
-        <form id="add-room" onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoom) } }>
-          <input className="textInput" type="text" value={ this.state.newRoom } onChange={ (e) => { this.handleChange(e) } } name="newRoom"/>
-          <input type="submit" value="New Room" />
+      <section>
+        <h1>Chat Rooms</h1>
+        <form onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoom) } }>
+          <input type="text" value={ this.state.newRoom } onChange={ (e) => { this.handleChange(e) } } name="newRoom"/>
+          <input type="submit" value="Add Room" />
         </form>
-        <ul className="room-list">
+        <ul>
           {
             this.state.rooms.map( (room, index) =>
-            <li className="room" key={index}>
-              <button onClick={ () => this.props.openRoom(room.key) } className="room-name">{ room.name }</button>
+            <li key={index}>
+              <div>
+                <button onClick={ () => this.props.openRoom(room.key) } >{ room.name }</button>
+                <button onClick={ () => this.deleteRoom(room) }>X</button>
+              </div>
             </li>
             )
           }
         </ul>
-      </section>
+    </section>
     );
   }
 }
