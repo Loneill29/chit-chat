@@ -45,11 +45,11 @@ render () {
           {
             this.state.rooms.map( (room, index) =>
             <li className="room" key={index}>
-              {room.name}
+              <button onClick={ () => this.props.openRoom(room.key) } className="room-name">{ room.name }</button>
             </li>
-              )
-            }
-          </ul>
+            )
+          }
+        </ul>
     </section>
     );
   }

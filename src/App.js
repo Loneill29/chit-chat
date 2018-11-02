@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
+import MessageList from './components/MessageList';
 
 var config = {
     apiKey: "AIzaSyBRPeLHabN6YKcnuGD9N5RHgWrGg1zGCE0",
@@ -15,10 +16,22 @@ var config = {
   firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentRoom: {},
+    };
+  }
+
+  openRoom(room) {
+    this.setState({currentRoom: room});
+  }
+
   render() {
     return (
       <div className="App">
-        <RoomList firebase= {firebase} />
+        <RoomList firebase= {firebase} currentRoom={this.state.currentRoom} openRoom={(room) => {this.openRoom(room)} }/>
+        <MessageList firebase= {firebase} currentRoom={this.state.currentRoom}  />
       </div>
     );
   }
