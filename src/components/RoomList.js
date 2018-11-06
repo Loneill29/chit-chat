@@ -43,25 +43,32 @@ class RoomList extends Component {
 
   render () {
     return (
-      <section>
-        <h1>Chat Rooms</h1>
-        <form onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoom) } }>
-          <input type="text" value={ this.state.newRoom } onChange={ (e) => { this.handleChange(e) } } name="newRoom"/>
-          <input type="submit" value="Add Room" />
-        </form>
-        <ul>
-          {
-            this.state.rooms.map( (room, index) =>
-            <li key={index}>
-              <div>
-                <button onClick={ () => this.props.openRoom(room.key) } >{ room.name }</button>
-                <button onClick={ () => this.deleteRoom(room) }>X</button>
-              </div>
-            </li>
-            )
-          }
-        </ul>
-    </section>
+      <section className="container-fluid">
+      <h1 className="title">Chit-Chat</h1>
+        <div className="row">
+          <nav className="col-lg-2 d-none d-lg-block bg-light sidebar">
+            <div className="sidebar-sticky">
+              <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Chat Rooms</h4>
+              <form onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoom) } }>
+                <input className="new-room" type="text" value={ this.state.newRoom } onChange={ (e) => { this.handleChange(e) } } name="newRoom"/>
+                <input className="add-room" type="submit" value="Add Room" />
+              </form>
+              <ul className="nav flex-column">
+              {
+                this.state.rooms.map( (room, index) =>
+                <li className="nav-item" key={index}>
+                  <div>
+                    <button onClick={ () => this.props.openRoom(room.key) } >{ room.name }</button>
+                    <button onClick={ () => this.deleteRoom(room) }>X</button>
+                  </div>
+                </li>
+                )
+              }
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </section>
     );
   }
 }
