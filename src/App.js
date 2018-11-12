@@ -36,7 +36,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <img src={"chat.jpeg"} alt="background" className="background"/>
+        <img src={"/public/chat.jpeg"} alt="background" className="background"/>
         <User firebase= {firebase} createUser={this.createUser.bind(this)} username={this.state.username} />
         <RoomList firebase= {firebase} currentRoom={this.state.currentRoom} openRoom={(room) => {this.openRoom(room)} } username={this.state.username} />
         <MessageList firebase= {firebase} currentRoom={this.state.currentRoom} openRoom={(room) => {this.openRoom(room)} } username={this.state.username} />
