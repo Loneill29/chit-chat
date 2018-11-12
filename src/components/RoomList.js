@@ -44,11 +44,10 @@ class RoomList extends Component {
   render () {
     return (
       <section className="container-fluid">
-      <h1 className="title">Chit-Chat</h1>
         <div className="row">
-          <nav className="col-lg-2 d-none d-lg-block bg-light sidebar">
+          <nav className="sidebar d-none d-lg-block">
             <div className="sidebar-sticky">
-              <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">Chat Rooms</h4>
+              <h4 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">Chat Rooms</h4>
               <form onSubmit={ (e) => { e.preventDefault(); this.createRoom(this.state.newRoom) } }>
                 <input className="new-room" type="text" value={ this.state.newRoom } onChange={ (e) => { this.handleChange(e) } } name="newRoom"/>
                 <input className="add-room" type="submit" value="Add Room" />
