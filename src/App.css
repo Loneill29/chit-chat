@@ -15,7 +15,7 @@ ul {
 
 .background {
   opacity: 0.7;
-  background: url(/public/chat.png) no-repeat top center fixed;
+  background: url(/assets/images/chat.png) no-repeat top center fixed;
   min-height: 100%;
   min-width: 1024px;
   width: 100%;
