@@ -1,3 +1,3 @@
-# Playmuse
+# Chit-Chat
 
-A digital music player built with React.
+A chatroom application built with React.
