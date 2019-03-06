@@ -57,6 +57,8 @@ ul {
   height: 516px;
   overflow-y: scroll;
   margin-top: 20vh;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 h1 {
@@ -78,7 +80,7 @@ h1 {
   margin-left: 15px;
 }
 
-.message {
+.new-message {
   display: inline;
   margin-top: 50px;
 }
@@ -195,10 +197,11 @@ textarea, input {
 }
 
 .nav-side-menu ul {
-  padding: 10px;
-  width: 200px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  width: 170px;
   border-radius: 10%;
-  margin-left: 150px;
 }
 
 .nav-side-menu li a {
@@ -287,7 +290,9 @@ textarea, input {
   }
   .msg-history {
     margin-top: 100px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
   }
+}
+
+.radio-item input[type=radio]:checked + label:after {
+  color: blue;
 }
