@@ -75,13 +75,13 @@ class MessageList extends Component {
 
   render() {
     return (
-      <section className="msgs">
+      <section className="msgs pull-right col-md-9">
         <div className="msg-history">
           <div className="messages">
             {this.state.currentMessages.map( (message) =>
-              <div key={message.key}>
-                <p className="message">{message.username} : {message.content}  <strong>{this.displayTime(message.sentAt)}</strong></p>
-                <button className="delete-msg" onClick={ () => this.deleteMessage(message) }>x</button>
+              <div className="message-box" key={message.key}>
+              <button className="delete-msg btn btn-danger pull-right" onClick={ () => this.deleteMessage(message) }><i class="far fa-trash-alt fa-sm"></i></button>
+                <p className="message"><strong>{message.username} : </strong> {message.content}  <strong className="pull-right">{this.displayTime(message.sentAt)}</strong></p>
               </div>
               )
             }
@@ -90,8 +90,8 @@ class MessageList extends Component {
         <footer className="footer">
           <div className="container">
             <form onSubmit={ (e) => { e.preventDefault(); this.createMessage(this.state.newMessage, this.props.currentRoom) } }>
-              <input className="message-text" type="text" value={ this.state.newMessage } onChange={ (e) => { this.handleChange(e) } }  name="newMessage" />
-              <input id="send" type="submit" value="Send"/>
+              <textarea className="message-text" type="text" value={ this.state.newMessage } onChange={ (e) => { this.handleChange(e) } }  name="newMessage" />
+              <input id="send" className="pull-right btn btn-primary" type="submit" value="Send"/>
             </form>
           </div>
         </footer>
