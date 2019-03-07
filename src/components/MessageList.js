@@ -56,7 +56,8 @@ class MessageList extends Component {
   }
 
   createMessage(newMessage, currentRoom) {
-    this.messagesRef.push({
+    if (!this.props.currentRoom) {alert('You must select a room to send a message.')}
+    else this.messagesRef.push({
       content: newMessage,
       roomId: this.props.currentRoom,
       username: this.props.username ? this.props.username.displayName : 'Guest',
@@ -81,7 +82,7 @@ class MessageList extends Component {
             {this.state.currentMessages.map( (message) =>
               <div className="message-box" key={message.key}>
               <button className="delete-msg btn btn-danger pull-right" onClick={ () => this.deleteMessage(message) }><i className="far fa-trash-alt fa-sm"></i></button>
-                <p className="message"><strong>{message.username} : </strong> {message.content}  <strong className="pull-right">{this.displayTime(message.sentAt)}</strong></p>
+                <p className="message"><strong className="navy">{message.username} : </strong> {message.content}  <strong className="pull-right navy">{this.displayTime(message.sentAt)}</strong></p>
               </div>
               )
             }
