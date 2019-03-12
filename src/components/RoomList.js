@@ -25,8 +25,8 @@ class RoomList extends Component {
   }
 
   createRoom(newRoom) {
-    if (!this.props.username || !newRoom) { return }
-      this.roomsRef.push({
+    if (!this.props.username || !newRoom) { alert('You must sign in to create a chat room.') }
+    else this.roomsRef.push({
         name: newRoom,
       });
     this.setState({ newRoom: '' });

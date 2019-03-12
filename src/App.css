@@ -105,7 +105,8 @@ h1 {
 }
 
 .message-box {
-  padding: 20px!important;
+  padding: 10px!important;
+  margin-right: 10px;
 }
 
 .delete-msg {

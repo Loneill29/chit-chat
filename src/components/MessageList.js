@@ -81,7 +81,7 @@ class MessageList extends Component {
           <div className="messages">
             {this.state.currentMessages.map( (message) =>
               <div className="message-box" key={message.key}>
-              <button className="delete-msg btn btn-danger pull-right" onClick={ () => this.deleteMessage(message) }><i className="far fa-trash-alt fa-sm"></i></button>
+              <button className="delete-msg btn btn-danger pull-right" onClick={ () => this.deleteMessage(message) }><i className="far fa-trash-alt fa-xs"></i></button>
                 <p className="message"><strong className="navy">{message.username} : </strong> {message.content}  <strong className="pull-right navy">{this.displayTime(message.sentAt)}</strong></p>
               </div>
               )
