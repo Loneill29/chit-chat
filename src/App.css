@@ -19,6 +19,10 @@ ul {
   width: 150px;
 }
 
+.btn-danger {
+  background-color: #a23741!important;
+  border-color: #a23741!important;
+}
 .navy {
   color: #012d5d
 }
